@@ -1,0 +1,76 @@
+#Modo "r" - Abre o arquivo para leitura
+#Modo "w" - Abre para escrita e apaga o conteudo existente
+#modo "a" - adicionar novo conteudo no final do arquivo
+#modo "x" - criar um arquivo novo e gera erro se ele ja existir
+
+def criar_arquivo():
+    # o "with"  fecha o arquivo automaticamente
+    # o "pen()" funcao para leitura ou escrita de arquivos
+    with open ("aluno.txt", "w" , encoding="utf-8") as arquivo:
+        arquivo.write("maria\n")
+        arquivo.write("manu\n")
+        arquivo.write("luiza\n")
+
+#criar_arquivo()
+
+def adicionar_luno(nome):
+    with open ("aluno.txt" , "a" , encoding="utf-8") as arquivo:
+        arquivo.write(nome + "\n")
+        arquivo.write("maria\n")
+
+#adicionar_luno("maria")
+#adicionar_luno("luiza")
+#adicionar_luno("maradona")
+
+
+def  lista_alunos ():
+    with open ("aluno.txt" , "r" , encoding="utf-8") as arquivo:
+        conteudo = arquivo.read()
+        print(f"o conteudo do arquivo alunos e {conteudo}")
+#lista_alunos()
+
+def listar_alunos_individual ():
+    lista_alunos = []
+    with open ("aluno.txt" , "r" , encoding="utf-8") as arquivo:
+        for linha in arquivo:
+            lista_alunos.append(linha.strip())
+
+            nomes_alunos = [nome.strip() for nome in arquivo ]
+
+
+        print(f"lista der alunos e {lista_alunos}")
+
+#listar_alunos_individual()
+
+def cadastrar_aluno (nome):
+    nome = input("Digite o nome do aluno: ")
+    idade = int(input("Digite a idade do aluno: "))
+
+    with open ("cadastro.txt" , "a" , encoding="utf-8") as arquivo:
+        arquivo.write(f"{nome};{idade}\n")
+
+        print("alunos cadastrados")
+
+#cadastrar_aluno()
+
+def listar_cadastar ():
+    itens_cadastrar = []
+    with open ("cadastro.txt" , "r" , encoding="utf-8") as arquivo:
+        for linha in arquivo:
+            nome,idade = linha.strip().split(";")
+
+
+            obj = {
+                "nome": nome,
+                "idade": idade
+            }
+            itens_cadastrar.append(obj)
+            print(f"itens cadastrados; {itens_cadastrar}")
+
+
+listar_cadastar()
+
+
+
+
+
